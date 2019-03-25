@@ -6,7 +6,7 @@ class Option extends Component {
     super(props)
   }
   render(){
-    const {value,key,id} = this.props
+    const {value,id} = this.props
     return(
     <option value = {id}>
       {value}

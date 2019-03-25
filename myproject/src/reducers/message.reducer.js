@@ -3,6 +3,7 @@ const initialMessageState = {
 }
 
 export const messageReducer = function (state = initialMessageState, action) {
+    console.log(action.type)
     switch (action.type) {
         case 'GETmessage': {
             const ActionData = action.data.id

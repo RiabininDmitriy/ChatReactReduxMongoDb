@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import Input from '../Input'
 import ButtonComponent from '../Button'
-import { sendApi } from '../../utils/index'
+import {ActionFetchPOST} from '../../action/index'
 import SelectComponent from  '../Select'
-import store from '../../store'
+// import store from '../../store'
 import {connect}   from 'react-redux';
 import {POSTmessageState as POSTmessageStateAction} from '../../action/index'
-import { checkPropTypes } from 'prop-types';
+// import { sendApi } from '../../utils/index'
+// import { checkPropTypes } from 'prop-types';
 
 class Form extends Component {
     constructor(props) { 
@@ -18,11 +19,11 @@ class Form extends Component {
     handleSubmit(event) {
         event.preventDefault()
         const formValue = { nick: this.nickValue.state.value, message: this.messageValue.state.value , roomId : this.props.storePropsId}
-        sendApi(formValue, "POST","message")
-        .then(response => this.props.POSTmessageState(this.props.storePropsId,response))
-        .then(()=>{this.nickValue.setState({value:""})
-        this.messageValue.setState({value:""})})
+        this.props.saveMessage (formValue)
+        this.messageValue.setState({value:""})
+        this.nickValue.setState({value:""})
     }
+    
         
     render() {
         return (
@@ -46,7 +47,8 @@ const mapStateToProps = function (store) {
   }
 
 const mapDispatchToProps = {
-    POSTmessageState:POSTmessageStateAction
+    saveMessage:ActionFetchPOST
+    
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Form) 
