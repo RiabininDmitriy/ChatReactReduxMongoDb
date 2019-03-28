@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import { sendApi } from '../../utils/index'
 import Option from '../Options';
-import { getChatRooms as getChatRoomsAction, chatRoomIdSetState as chatRoomIdSetStateAction } from '../../action/index'
-import {ActionFetchGETid} from '../../action/index'
+import {ActionFetchGETid, chatRoomIdSetState,ActionFetchIdSetState} from '../../action/index'
 import { connect } from 'react-redux';
-import store from '../../store'
 
 class SelectComponent extends Component {
   constructor(props) {
@@ -14,14 +11,12 @@ class SelectComponent extends Component {
 
   componentWillMount() {
     const { ActionFetchGETid } = this.props
-    // sendApi(null, "GET", "ChatRooms")
-    //   .then(data => getChatRooms(data))
     ActionFetchGETid()
   }
   handleChange(event) {
-    const { chatRoomIdSetState } = this.props
+    const { ActionFetchIdSetState } = this.props
+    ActionFetchIdSetState(event.target.value)
 
-    chatRoomIdSetState(event.target.value)
   }
 
   render() {
@@ -41,8 +36,8 @@ const mapStateToProps = function (store) {
 }
 
 const mapDispatchToProps = {
-  getChatRooms: getChatRoomsAction,
-  ActionFetchGETid: ActionFetchGETid
+  ActionFetchGETid: ActionFetchGETid,
+  ActionFetchIdSetState:ActionFetchIdSetState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectComponent) 

@@ -6,10 +6,10 @@ export const getChatRooms = (data) => {
         data: data
     }
 }
-export const ActionFetchGETid = ()=>{
+export const ActionFetchGETid = () => {
     return dispatch => {
         let fetchSetId = sendApi(null, "GET", "ChatRooms")
-        .then(response => dispatch(getChatRooms(response)))
+            .then(response => dispatch(getChatRooms(response)))
     }
 }
 
@@ -21,6 +21,12 @@ export const chatRoomIdSetState = (data) => {
         data: data
     }
 }
+export const ActionFetchIdSetState = (id) => {
+    return dispatch => {
+        dispatch(chatRoomIdSetState(id))
+        dispatch(ActionFetchGET(id))
+    }
+}
 
 
 
@@ -30,10 +36,10 @@ export const GETmessageState = (id, message) => {
         data: { message: message, id: id }
     }
 }
-export const ActionFetchGET = (id)=> {
+export const ActionFetchGET = (id) => {
     return dispatch => {
         let fetchGET = sendApi(null, "GET", `message/${id}`)
-        .then(response => dispatch(GETmessageState(id,response)))
+            .then(response => dispatch(GETmessageState(id, response)))
     }
 }
 
@@ -49,7 +55,7 @@ export const ActionFetchPOST = (formValue) => {
     return dispatch => {
         let fetchPOST = sendApi(formValue, "POST", "message")
             .then(response => dispatch(POSTmessageState(response.roomId, response)))
-    
+
     }
 }
 
