@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "babel-node app.js",
-    "mongodb" : "sudo service mongod start"
+    "mongodb": "sudo service mongod start"
   },
   "author": "Dima",
   "license": "ISC",
